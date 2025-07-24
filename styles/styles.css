@@ -1,0 +1,13 @@
+a {
+  padding: 1rem;
+  border: 1px solid black;
+  text-decoration: none;
+  display: block;
+  border-radius: 6px;
+  background-color: #f4f4f4;
+  transition: 0.3s ease;
+}
+
+a:hover {
+  background-color: #d1c4e9;
+}

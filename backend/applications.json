@@ -1,0 +1,65 @@
+[
+  {
+    "id": "05cf70bf-8e9f-4be8-93af-feba0644f3c7",
+    "client_name": "John Doe",
+    "form_type": "Methadone Application",
+    "submitted_date": "2025-07-21",
+    "approval_date": "2025-07-22"
+  },
+  {
+    "id": "ed9b2e0c-e4c7-4301-85f1-4bf43cbb12a5",
+    "client_name": "Emmanuel Senator",
+    "form_type": "traditional",
+    "submitted_date": "2025-07-09",
+    "approval_date": "2025-08-01",
+    "approval_received_date": "2025-07-13",
+    "hotel_voucher_submitted": true,
+    "flight_booked": true,
+    "cheque_requisition_date": "2025-07-18",
+    "cheque_raised_date": "2025-07-05",
+    "cheque_collected_date": "2025-07-04",
+    "updated_at": "2025-07-23T14:28:23.104Z"
+  },
+  {
+    "id": "a0f9b80b-8f07-490b-a16f-12380c1053e5",
+    "client_name": "Ife Favour",
+    "form_type": "transport",
+    "submitted_date": "2025-07-02",
+    "approval_date": "2025-07-10",
+    "approval_received_date": "2025-07-12",
+    "hotel_voucher_submitted": false,
+    "flight_booked": true,
+    "cheque_requisition_date": "2025-07-19",
+    "cheque_raised_date": "2025-07-10",
+    "cheque_collected_date": "2025-07-18",
+    "updated_at": "2025-07-23T14:33:41.279Z"
+  },
+  {
+    "id": "bc5e1f66-9520-4c6f-b205-1b610f7df186",
+    "client_name": "Jack Bauer",
+    "form_type": "reimbursement",
+    "submitted_date": "2025-07-04",
+    "approval_date": null,
+    "approval_received_date": null,
+    "hotel_voucher_submitted": false,
+    "flight_booked": false,
+    "cheque_requisition_date": null,
+    "cheque_raised_date": null,
+    "cheque_collected_date": null,
+    "updated_at": "2025-07-23T14:34:07.202Z"
+  },
+  {
+    "id": "41dd418e-b724-4cd8-bf2b-ac978612f65b",
+    "client_name": "Cole Palmer",
+    "form_type": "appointment",
+    "submitted_date": "2025-07-29",
+    "approval_date": "2025-07-29",
+    "approval_received_date": "2025-07-22",
+    "hotel_voucher_submitted": true,
+    "flight_booked": true,
+    "cheque_requisition_date": null,
+    "cheque_raised_date": null,
+    "cheque_collected_date": null,
+    "updated_at": "2025-07-24T05:50:27.749Z"
+  }
+]

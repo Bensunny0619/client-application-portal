@@ -1,0 +1,19 @@
+.wrapper {
+  text-align: center;
+  padding: 2rem;
+  background-color: #fff;
+}
+
+.title{
+  font-family: 'Courier New', sans-serif;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
+

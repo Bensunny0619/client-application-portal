@@ -1,13 +1,13 @@
+// pages/client-applications/[id].tsx
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
-import { Application } from '../types/application';
+import { Application } from "../../types/application"; // Make sure path is correct
 
 export default function ApplicationDetailsPage() {
   const router = useRouter();
   const { id } = router.query;
 
-  
   const [application, setApplication] = useState<Application | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -34,15 +34,22 @@ export default function ApplicationDetailsPage() {
     fetchApplication();
   }, [id]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
-    setApplication((prev: any) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setApplication((prev) =>
+      prev
+        ? {
+            ...prev,
+            [name]: value,
+          }
+        : null
+    );
   };
 
   const handleSave = async () => {
+    if (!application) return;
     setSaving(true);
     const { error } = await supabase
       .from("applications")
@@ -85,7 +92,9 @@ export default function ApplicationDetailsPage() {
       {loading ? (
         <p style={{ textAlign: "center", fontStyle: "italic" }}>Loading...</p>
       ) : !application ? (
-        <p style={{ textAlign: "center", color: "#b91c1c" }}>❌ Application not found.</p>
+        <p style={{ textAlign: "center", color: "#b91c1c" }}>
+          ❌ Application not found.
+        </p>
       ) : (
         <form
           onSubmit={(e) => {
@@ -110,7 +119,7 @@ export default function ApplicationDetailsPage() {
               <input
                 name={field.name}
                 type={field.type || "text"}
-                value={application[field.name] || ""}
+                value={(application as any)[field.name] || ""}
                 onChange={handleChange}
                 style={{
                   width: "100%",

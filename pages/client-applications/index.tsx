@@ -1,127 +1,169 @@
-import { useEffect, useState } from "react";
+// pages/new.tsx
+import { useState } from "react";
+import { useRouter } from "next/router";
 import { supabase } from "@/lib/supabase";
-import Link from "next/link";
-import { Application } from "../../types/application"; // Adjust path as needed
+import { Application } from "../types/application";
 
-export default function ApplicationListPage() {
-  const [applications, setApplications] = useState<Application[]>([]);
-  const [filteredApplications, setFilteredApplications] = useState<Application[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState("");
+export default function NewApplicationPage() {
+  const router = useRouter();
 
-  useEffect(() => {
-    const fetchApps = async () => {
-      const { data, error } = await supabase
-        .from("applications")
-        .select("*")
-        .order("updated_at", { ascending: false });
+  const [formData, setFormData] = useState<Partial<Application>>({
+    clientname: "",
+    formtype: "",
+    submitteddate: "",
+    status: "",
+  });
 
-      if (!error) {
-        setApplications(data || []);
-        setFilteredApplications(data || []);
-      }
-      setLoading(false);
-    };
+  const [submitting, setSubmitting] = useState(false);
 
-    fetchApps();
-  }, []);
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
-  useEffect(() => {
-    const results = applications.filter((app: Application) =>
-      app.clientname?.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFilteredApplications(results);
-  }, [applications, searchTerm]);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitting(true);
+
+    const { error } = await supabase.from("applications").insert([
+      {
+        ...formData,
+        updated_at: new Date().toISOString(),
+      },
+    ]);
+
+    if (error) {
+      alert("❌ Error creating application: " + error.message);
+    } else {
+      alert("✅ Application created successfully.");
+      router.push("/");
+    }
+
+    setSubmitting(false);
+  };
 
   return (
     <div
       style={{
-        minHeight: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#f8f8fc",
-        padding: "20px",
+        maxWidth: "700px",
+        margin: "60px auto",
+        padding: "40px",
+        border: "1px solid #e5e7eb",
+        borderRadius: "12px",
+        background: "#ffffff",
+        boxShadow: "0 4px 12px rgba(0,0,0,0.06)",
+        fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
       }}
     >
-      <div
+      <h1
         style={{
-          width: "100%",
-          maxWidth: "800px",
-          backgroundColor: "#fff",
-          borderRadius: "10px",
-          boxShadow: "0 0 10px rgba(0,0,0,0.1)",
-          padding: "30px",
+          fontSize: "24px",
+          fontWeight: "bold",
+          color: "#6B21A8",
+          marginBottom: "24px",
           textAlign: "center",
         }}
       >
-        <h1
+        🆕 Create New Application
+      </h1>
+
+      <form onSubmit={handleSubmit}>
+        <div style={{ marginBottom: "16px" }}>
+          <label style={{ fontWeight: "bold" }}>Client Name</label>
+          <input
+            name="clientname"
+            value={formData.clientname || ""}
+            onChange={handleChange}
+            required
+            style={{
+              width: "100%",
+              padding: "10px",
+              borderRadius: "6px",
+              border: "1px solid #ccc",
+              marginTop: "4px",
+            }}
+          />
+        </div>
+
+        <div style={{ marginBottom: "16px" }}>
+          <label style={{ fontWeight: "bold" }}>Form Type</label>
+          <input
+            name="formtype"
+            value={formData.formtype || ""}
+            onChange={handleChange}
+            required
+            style={{
+              width: "100%",
+              padding: "10px",
+              borderRadius: "6px",
+              border: "1px solid #ccc",
+              marginTop: "4px",
+            }}
+          />
+        </div>
+
+        <div style={{ marginBottom: "16px" }}>
+          <label style={{ fontWeight: "bold" }}>Submitted Date</label>
+          <input
+            type="date"
+            name="submitteddate"
+            value={formData.submitteddate || ""}
+            onChange={handleChange}
+            required
+            style={{
+              width: "100%",
+              padding: "10px",
+              borderRadius: "6px",
+              border: "1px solid #ccc",
+              marginTop: "4px",
+            }}
+          />
+        </div>
+
+        <div style={{ marginBottom: "16px" }}>
+          <label style={{ fontWeight: "bold" }}>Status</label>
+          <select
+            name="status"
+            value={formData.status || ""}
+            onChange={handleChange}
+            required
+            style={{
+              width: "100%",
+              padding: "10px",
+              borderRadius: "6px",
+              border: "1px solid #ccc",
+              marginTop: "4px",
+            }}
+          >
+            <option value="">-- Select Status --</option>
+            <option value="incomplete">⏳ In Progress</option>
+            <option value="complete">✅ Complete</option>
+          </select>
+        </div>
+
+        <button
+          type="submit"
+          disabled={submitting}
           style={{
-            fontSize: "24px",
-            marginBottom: "20px",
-            color: "#6b21a8",
+            background: "#6B21A8",
+            color: "#fff",
+            padding: "12px 24px",
+            fontSize: "16px",
+            border: "none",
+            borderRadius: "8px",
+            cursor: "pointer",
+            width: "100%",
+            marginTop: "20px",
           }}
         >
-          All Applications
-        </h1>
-
-        <input
-          type="text"
-          placeholder="Search by client name..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          style={{
-            width: "100%",
-            padding: "10px",
-            marginBottom: "20px",
-            borderRadius: "6px",
-            border: "1px solid #ccc",
-            fontSize: "16px",
-          }}
-        />
-
-        {loading ? (
-          <p>Loading...</p>
-        ) : filteredApplications.length === 0 ? (
-          <p>No matching applications.</p>
-        ) : (
-          <ul style={{ listStyle: "none", padding: 0 }}>
-            {filteredApplications.map((app) => (
-              <li
-                key={app.id}
-                style={{
-                  border: "1px solid #ccc",
-                  borderRadius: "8px",
-                  padding: "15px",
-                  marginBottom: "10px",
-                  textAlign: "left",
-                }}
-              >
-                <strong>{app.clientname}</strong> – {app.formtype} –{" "}
-                <em>{app.status}</em>
-                <br />
-                <small>Submitted: {app.submitteddate || "N/A"}</small>
-                <br />
-                <Link href={`/client-applications/${app.id}`}>
-                  <button
-                    style={{
-                      marginTop: "8px",
-                      padding: "6px 12px",
-                      background: "#4B0082",
-                      color: "#fff",
-                      border: "none",
-                      borderRadius: "4px",
-                      cursor: "pointer",
-                    }}
-                  >
-                    View / Edit
-                  </button>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
+          {submitting ? "Submitting..." : "🚀 Submit"}
+        </button>
+      </form>
     </div>
   );
 }

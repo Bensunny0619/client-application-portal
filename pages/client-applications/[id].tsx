@@ -2,8 +2,10 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
-import { Application } from "../../types/application"; // Make sure path is correct
+import { Application } from "../types/application"; // Make sure path is correct
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 
+  
 export default function ApplicationDetailsPage() {
   const router = useRouter();
   const { id } = router.query;
@@ -178,3 +180,4 @@ export default function ApplicationDetailsPage() {
     </div>
   );
 }
+// ...

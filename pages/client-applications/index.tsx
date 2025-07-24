@@ -3,7 +3,9 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { supabase } from "@/lib/supabase";
 import { Application } from "../types/application";
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 
+ 
 export default function NewApplicationPage() {
   const router = useRouter();
 
@@ -167,3 +169,4 @@ export default function NewApplicationPage() {
     </div>
   );
 }
+ // ...

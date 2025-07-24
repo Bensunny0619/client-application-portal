@@ -7,11 +7,12 @@ export default function RequireAuth({ children }: { children: React.ReactNode })
   const { user } = useAuth();
   const router = useRouter();
 
-  useEffect(() => {
-    if (!user) {
-      router.push('/login');
-    }
-  }, [user]);
+ useEffect(() => {
+  if (!user) {
+    router.push('/login');
+  }
+}, [router, user]);
+
 
   return user ? <>{children}</> : null;
 }

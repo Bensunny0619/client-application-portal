@@ -27,7 +27,8 @@ export default function NewApplicationPage() {
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent, isDraft = false) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+
     e.preventDefault();
 
     const payload: any = {

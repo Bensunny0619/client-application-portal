@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import Link from "next/link";
+import { Application } from "../../types/application"; // Adjust path as needed
 
 export default function ApplicationListPage() {
-  const [applications, setApplications] = useState<any[]>([]);
-  const [filteredApps, setFilteredApps] = useState<any[]>([]);
+  const [applications, setApplications] = useState<Application[]>([]);
+  const [filteredApplications, setFilteredApplications] = useState<Application[]>([]);
   const [loading, setLoading] = useState(true);
-  const [search, setSearch] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const fetchApps = async () => {
@@ -17,7 +18,7 @@ export default function ApplicationListPage() {
 
       if (!error) {
         setApplications(data || []);
-        setFilteredApps(data || []);
+        setFilteredApplications(data || []);
       }
       setLoading(false);
     };
@@ -26,11 +27,11 @@ export default function ApplicationListPage() {
   }, []);
 
   useEffect(() => {
-    const results = applications.filter((app) =>
-      app.clientname?.toLowerCase().includes(search.toLowerCase())
+    const results = applications.filter((app: Application) =>
+      app.clientname?.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    setFilteredApps(results);
-  }, [search, applications]);
+    setFilteredApplications(results);
+  }, [applications, searchTerm]);
 
   return (
     <div
@@ -67,8 +68,8 @@ export default function ApplicationListPage() {
         <input
           type="text"
           placeholder="Search by client name..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
           style={{
             width: "100%",
             padding: "10px",
@@ -81,11 +82,11 @@ export default function ApplicationListPage() {
 
         {loading ? (
           <p>Loading...</p>
-        ) : filteredApps.length === 0 ? (
+        ) : filteredApplications.length === 0 ? (
           <p>No matching applications.</p>
         ) : (
           <ul style={{ listStyle: "none", padding: 0 }}>
-            {filteredApps.map((app) => (
+            {filteredApplications.map((app) => (
               <li
                 key={app.id}
                 style={{

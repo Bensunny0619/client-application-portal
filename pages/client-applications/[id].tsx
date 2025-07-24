@@ -1,12 +1,14 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
+import { Application } from '../types/application';
 
 export default function ApplicationDetailsPage() {
   const router = useRouter();
   const { id } = router.query;
 
-  const [application, setApplication] = useState<any>(null);
+  
+  const [application, setApplication] = useState<Application | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
 

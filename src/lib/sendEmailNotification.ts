@@ -16,10 +16,10 @@ export const sendEmailNotification = async ({
 
   try {
     const result = await emailjs.send(
-      "your_service_id",      // from EmailJS
-      "your_template_id",     // from EmailJS
+     process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+      process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
       templateParams,
-      "your_public_key"       // from EmailJS
+      process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
     );
     console.log("Email sent successfully", result.status);
   } catch (error) {

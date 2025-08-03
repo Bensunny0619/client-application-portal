@@ -2,9 +2,19 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import Link from "next/link";
 
+interface Application {
+  id: string;
+  clientname: string;
+  formtype: string;
+  status: string;
+  submitteddate?: string;
+  updated_at?: string;
+  // Add other fields if necessary
+}
+
 export default function ApplicationListPage() {
-  const [applications, setApplications] = useState<any[]>([]);
-  const [filteredApps, setFilteredApps] = useState<any[]>([]);
+  const [applications, setApplications] = useState<Application[]>([]);
+  const [filteredApps, setFilteredApps] = useState<Application[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
 
@@ -15,9 +25,9 @@ export default function ApplicationListPage() {
         .select("*")
         .order("updated_at", { ascending: false });
 
-      if (!error) {
-        setApplications(data || []);
-        setFilteredApps(data || []);
+      if (!error && data) {
+        setApplications(data);
+        setFilteredApps(data);
       }
       setLoading(false);
     };
@@ -25,7 +35,6 @@ export default function ApplicationListPage() {
     fetchApps();
   }, []);
 
-  // Search filter effect
   useEffect(() => {
     const results = applications.filter((app) =>
       app.clientname?.toLowerCase().includes(search.toLowerCase())

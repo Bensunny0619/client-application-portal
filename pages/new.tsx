@@ -3,6 +3,21 @@ import { useRouter } from "next/router";
 import { supabase } from "@/lib/supabase";
 import { getTargetInfo } from "../utils/formUtils";
 
+interface ApplicationPayload {
+  clientname: string;
+  submitteddate: string;
+  approvaldate?: string;
+  approvalreceiveddate?: string;
+  hotelvouchersubmitted?: boolean;
+  flightbooked?: boolean;
+  chequerequisitiondate?: string;
+  chequeraiseddate?: string;
+  chequecollecteddate?: string;
+  formtype: string;
+  status: string;
+  updated_at: string;
+}
+
 export default function NewApplicationPage() {
   const router = useRouter();
   const formType = (router.query.type as string) || "Application";
@@ -31,7 +46,7 @@ export default function NewApplicationPage() {
   const handleSubmit = async (e: React.FormEvent, isDraft = false) => {
     e.preventDefault();
 
-    const payload: any = {
+    const payload: ApplicationPayload = {
       clientname: formData.clientname,
       submitteddate: formData.submitteddate,
       formtype: formType || "unspecified",
@@ -85,7 +100,7 @@ export default function NewApplicationPage() {
             value={formData.clientname}
             onChange={handleChange}
             required
-            style={{ width: "95%", padding: "10px", borderRadius: "6px", border: "1px solid #ccc" }}
+            style={inputStyle}
           />
         </div>
         <div style={{ marginBottom: "15px" }}>
@@ -96,7 +111,7 @@ export default function NewApplicationPage() {
             value={formData.submitteddate}
             onChange={handleChange}
             required
-            style={{ width: "95%", padding: "10px", borderRadius: "6px", border: "1px solid #ccc" }}
+            style={inputStyle}
           />
         </div>
         <div style={{ marginBottom: "15px" }}>
@@ -109,14 +124,12 @@ export default function NewApplicationPage() {
         </div>
         <div style={{ marginBottom: "15px" }}>
           <label>
-            <input type="checkbox" name="hotelvouchersubmitted" checked={formData.hotelvouchersubmitted} onChange={handleChange} />
-            {" "}Hotel Voucher Submitted
+            <input type="checkbox" name="hotelvouchersubmitted" checked={formData.hotelvouchersubmitted} onChange={handleChange} /> Hotel Voucher Submitted
           </label>
         </div>
         <div style={{ marginBottom: "15px" }}>
           <label>
-            <input type="checkbox" name="flightbooked" checked={formData.flightbooked} onChange={handleChange} />
-            {" "}Flight Booked
+            <input type="checkbox" name="flightbooked" checked={formData.flightbooked} onChange={handleChange} /> Flight Booked
           </label>
         </div>
         <div style={{ marginBottom: "15px" }}>

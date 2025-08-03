@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { supabase } from "@/lib/supabase";
+import { getTargetInfo } from "../utils/formUtils";
 
 export default function NewApplicationPage() {
   const router = useRouter();
@@ -20,7 +21,7 @@ export default function NewApplicationPage() {
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value, type, checked } = getTargetInfo(e);
     setFormData((prev) => ({
       ...prev,
       [name]: type === "checkbox" ? checked : value,

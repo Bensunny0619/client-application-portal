@@ -38,7 +38,10 @@ export default function EditApplicationPage() {
   }, [id]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value, type, checked } = e.target;
+    const target = e.target as HTMLInputElement | HTMLSelectElement;
+    const { name, value, type } = target;
+    const checked = type === "checkbox" ? target.checked : undefined;
+
     if (!application) return;
     setApplication({
       ...application,

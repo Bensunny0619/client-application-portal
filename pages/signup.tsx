@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
 
 export default function SignupPage() {
   const [email, setEmail] = useState('');

@@ -77,7 +77,7 @@ export default function LoginPage() {
           />
           <button type="submit" style={styles.button}>Log In</button>
           <p style={{ textAlign: 'center', marginTop: '1rem', fontSize: '0.875rem' }}>
-            Don't have an account?{' '}
+            Don&apos;t have an account?
             <Link href="/signup" style={{ color: '#7E22CE', textDecoration: 'underline' }}>
               Sign up
             </Link>

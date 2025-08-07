@@ -45,7 +45,7 @@ export default function ApplicationListPage() {
 
   return (
     <div style={{ maxWidth: "800px", margin: "40px auto", padding: "30px" }}>
-      <h1 style={{ fontSize: "28px", marginBottom: "20px", color: "#6b21a8", }}>
+      <h1 style={{ fontSize: "28px", marginBottom: "20px", color: "#6b21a8", fontFamily: `'Playfair Display', serif`,}}>
         All Applications
       </h1>
 
@@ -96,6 +96,7 @@ export default function ApplicationListPage() {
                     border: "none",
                     borderRadius: "4px",
                     cursor: "pointer",
+                    fontFamily: `'Playfair Display', serif`,
                   }}
                 >
                   View / Edit

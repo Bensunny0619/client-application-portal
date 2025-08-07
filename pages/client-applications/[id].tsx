@@ -216,6 +216,7 @@ const containerStyle: React.CSSProperties = {
   borderRadius: "10px",
   background: "#fff",
   boxShadow: "0 4px 8px rgba(0,0,0,0.05)",
+  fontFamily: `'Playfair Display', serif`,
 };
 
 const titleStyle: React.CSSProperties = {

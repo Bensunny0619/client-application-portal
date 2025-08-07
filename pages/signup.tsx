@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
 import { useRouter } from 'next/navigation';
-import bodyBg from '@/assets/med1.jpg'; 
-import navBg from '@/assets/head.png'; 
+import bodyBg from '@/assets/med1.jpg';
+import navBg from '@/assets/head.png';
 
 export default function SignupPage() {
   const [email, setEmail] = useState('');
@@ -16,7 +16,7 @@ export default function SignupPage() {
     e.preventDefault();
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-        router.push('/home');
+      router.push('/home');
     } catch (err: unknown) {
       if (err instanceof Error) {
         alert(err.message);
@@ -30,30 +30,57 @@ export default function SignupPage() {
     <div style={styles.container}>
       <style>
         {`
+          html, body {
+            margin: 0;
+            padding: 0;
+          }
+
           .form-container input:focus {
             outline: none;
-            box-shadow: 0 0 0 3px rgba(107, 33, 168, 0.4); /* purple ring */
+            box-shadow: 0 0 0 3px rgba(107, 33, 168, 0.4);
+          }
+
+          @media (max-width: 1024px) {
+            .form-container {
+              width: 90% !important;
+              padding: 2rem !important;
+            }
+
+            .header-title {
+              font-size: 1.2rem;
+            }
+
+            main {
+              padding: 2rem 1rem !important;
+            }
           }
 
           @media (max-width: 640px) {
             .form-container {
-              padding: 1.5rem;
+              width: 100% !important;
+              border: none !important;
+              box-shadow: none !important;
+              padding: 1.5rem !important;
+              background: rgba(255, 255, 255, 0.9);
             }
 
             .header-title {
               font-size: 1rem;
+            }
+
+            main {
+              padding: 1rem !important;
             }
           }
         `}
       </style>
 
       {/* Header */}
-      <header style={styles.header}>
+      {/* <header style={styles.header}>
         <div style={styles.headerContent}>
-          {/* <h1 className="header-title" style={styles.logo}>BATCHEWANA HEALTH CARE</h1> */}
-          {/* <Link href="/home" style={styles.homeLink}>← Home</Link> */}
+           Logo or title can go here 
         </div>
-      </header>
+      </header> */}
 
       {/* Main */}
       <main style={styles.main}>
@@ -77,13 +104,8 @@ export default function SignupPage() {
             required
           />
           <button type="submit" style={styles.button}>Sign Up</button>
-        </form> 
+        </form>
       </main>
-
-      {/* Footer */}
-      {/* <footer style={styles.footer}>
-        &copy; {new Date().getFullYear()} Batchewana First Nation Health Care. All rights reserved.
-      </footer> */}
     </div>
   );
 }
@@ -97,7 +119,10 @@ const styles: { [key: string]: React.CSSProperties } = {
     backgroundColor: '#F9FAFB',
     color: '#1F2937',
     fontFamily: 'sans-serif',
-    
+    backgroundImage: `url(${bodyBg.src})`,
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
   },
   header: {
     backgroundColor: '#FFFFFF',
@@ -109,26 +134,21 @@ const styles: { [key: string]: React.CSSProperties } = {
   headerContent: {
     maxWidth: '96rem',
     margin: '0 auto',
-    padding: '3.5rem 2rem',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    padding: '2rem 1rem',
     backgroundImage: `url(${navBg.src})`,
-  },
-  homeLink: {
-    fontWeight: 500,
-    color: '#7E22CE',
-    textDecoration: 'none',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
   },
   main: {
     flexGrow: 1,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: '3rem 1rem',
+    padding: '4vh 2vw',
   },
   form: {
-    width: '30%',
+    width: '100%',
     maxWidth: '28rem',
     backgroundColor: '#FFFFFF',
     border: '1px solid #E5E7EB',
@@ -145,9 +165,10 @@ const styles: { [key: string]: React.CSSProperties } = {
     fontWeight: 700,
     color: '#6B21A8',
     marginBottom: '0.5rem',
+    fontFamily: `'Playfair Display', serif`,
   },
   input: {
-    width: '90%',
+    width: '95%',
     padding: '0.75rem',
     border: '1px solid #D1D5DB',
     borderRadius: '0.375rem',
@@ -165,11 +186,4 @@ const styles: { [key: string]: React.CSSProperties } = {
     cursor: 'pointer',
     transition: 'background-color 0.3s ease',
   },
-  // footer: {
-  //   backgroundColor: '#F3F4F6',
-  //   textAlign: 'center',
-  //   padding: '1rem 0',
-  //   fontSize: '0.875rem',
-  //   color: '#C4B5FD',
-  // },
 };

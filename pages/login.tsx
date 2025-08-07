@@ -5,10 +5,9 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import bodyBg from '@/assets/med1.jpg'; 
-import navBg from '@/assets/head.png'; 
-import footerBg from '@/assets/foota.png'; 
-
+import bodyBg from '@/assets/med1.jpg';
+import navBg from '@/assets/head.png';
+import footerBg from '@/assets/foota.png';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -33,30 +32,37 @@ export default function LoginPage() {
     <div style={styles.container}>
       <style>
         {`
+          html, body {
+            margin: 0;
+            padding: 0;
+          }
           .form-container input:focus {
             outline: none;
             box-shadow: 0 0 0 3px rgba(107, 33, 168, 0.4); /* purple focus ring */
           }
-
-          @media (max-width: 640px) {
+          @media (max-width: 768px) {
             .form-container {
               padding: 1.5rem;
             }
-
             .header-title {
-              font-size: 1rem;
+              font-size: 1rem !important;
+              text-align: center;
+            }
+            .footer-text {
+              font-size: 0.8rem;
+              text-align: center;
+              padding: 0 1rem;
             }
           }
         `}
       </style>
 
       {/* Header */}
-      <header style={styles.header}>
+      {/* <header style={styles.header}>
         <div style={styles.headerContent}>
-          {/* <h1 className="header-title" style={styles.logo}>BATCHEWANA HEALTH CARE</h1> */}
-          {/* <Link href="/home" style={styles.homeLink}>← Home</Link> */}
+          <h1 className="header-title" style={styles.logo}>BATCHEWANA FIRST NATION HEALTH CARE</h1>
         </div>
-      </header>
+      </header> */}
 
       {/* Main */}
       <main style={styles.main}>
@@ -81,18 +87,20 @@ export default function LoginPage() {
           />
           <button type="submit" style={styles.button}>Log In</button>
           <p style={{ textAlign: 'center', marginTop: '1rem', fontSize: '0.875rem' }}>
-            Don&apos;t have an account?
+            Don&apos;t have an account?{' '}
             <Link href="/signup" style={{ color: '#7E22CE', textDecoration: 'underline' }}>
               Sign up
             </Link>
           </p>
-
         </form>
       </main>
 
       {/* Footer */}
       {/* <footer style={styles.footer}>
-        &copy; {new Date().getFullYear()} Batchewana First Nation Health Care. All rights reserved.
+        <div className="footer-text" style={styles.footerText}>
+          <p style={styles.footerHeading}>&copy; {new Date().getFullYear()} BATCHEWANA FIRST NATION HEALTH CARE. ALL RIGHTS RESERVED.</p>
+          <p className=''>210A GRAN STREET P6A 064</p>
+        </div>
       </footer> */}
     </div>
   );
@@ -105,35 +113,35 @@ const styles: { [key: string]: React.CSSProperties } = {
     display: 'flex',
     flexDirection: 'column',
     backgroundColor: '#F9FAFB',
-    color: '#1F2937',
     fontFamily: 'sans-serif',
     backgroundImage: `url(${bodyBg.src})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
   },
   header: {
     backgroundColor: '#FFFFFF',
-    boxShadow: '0 2px 4px rgba(0,0,0,0.05)',
     position: 'sticky',
     top: 0,
     zIndex: 10,
+    boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+    backgroundImage: `url(${navBg.src})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
   },
   headerContent: {
     maxWidth: '96rem',
     margin: '0 auto',
-    padding: '3.5rem 2rem',
+    padding: '1.5rem 2rem',
     display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundImage: `url(${navBg.src})`,
+    justifyContent: 'left',
+    alignItems: 'left',
   },
   logo: {
-    fontSize: '1.25rem',
+    fontSize: '1.5rem',
     fontWeight: 700,
-    color: '#6B21A8', // Purple-800
-  },
-  homeLink: {
-    fontWeight: 500,
-    color: '#7E22CE',
-    textDecoration: 'none',
+    color: '#FFFFFF',
+    fontFamily: `'Playfair Display', serif`,
+    textAlign: 'center',
   },
   main: {
     flexGrow: 1,
@@ -160,9 +168,10 @@ const styles: { [key: string]: React.CSSProperties } = {
     fontWeight: 700,
     color: '#6B21A8',
     marginBottom: '0.5rem',
+    fontFamily: `'Playfair Display', serif`,
   },
   input: {
-    width: '100%',
+    width: '95%',
     padding: '0.75rem',
     border: '1px solid #D1D5DB',
     borderRadius: '0.375rem',
@@ -179,12 +188,24 @@ const styles: { [key: string]: React.CSSProperties } = {
     borderRadius: '0.375rem',
     cursor: 'pointer',
     transition: 'background-color 0.3s ease',
+    
   },
   footer: {
-    backgroundColor: '#F3F4F6',
+    backgroundImage: `url(${footerBg.src})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
     textAlign: 'center',
-    padding: '1rem 0',
+    padding: '1.5rem 0',
     fontSize: '0.875rem',
-    color: '#C4B5FD',
+    color: '#D1D5DB',
+    fontWeight: 700,
+  },
+  footerText: {
+    color: '#D1D5DB',
+    fontFamily: `'Playfair Display', serif`,
+  },
+  footerHeading: {
+    fontSize: '1rem',
+    marginBottom: '0.3rem',
   },
 };

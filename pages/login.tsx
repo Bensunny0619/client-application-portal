@@ -5,6 +5,10 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import bodyBg from '@/assets/med1.jpg'; 
+import navBg from '@/assets/head.png'; 
+import footerBg from '@/assets/foota.png'; 
+
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -49,7 +53,7 @@ export default function LoginPage() {
       {/* Header */}
       <header style={styles.header}>
         <div style={styles.headerContent}>
-          <h1 className="header-title" style={styles.logo}>BATCHEWANA HEALTH CARE</h1>
+          {/* <h1 className="header-title" style={styles.logo}>BATCHEWANA HEALTH CARE</h1> */}
           {/* <Link href="/home" style={styles.homeLink}>← Home</Link> */}
         </div>
       </header>
@@ -87,9 +91,9 @@ export default function LoginPage() {
       </main>
 
       {/* Footer */}
-      <footer style={styles.footer}>
+      {/* <footer style={styles.footer}>
         &copy; {new Date().getFullYear()} Batchewana First Nation Health Care. All rights reserved.
-      </footer>
+      </footer> */}
     </div>
   );
 }
@@ -103,6 +107,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     backgroundColor: '#F9FAFB',
     color: '#1F2937',
     fontFamily: 'sans-serif',
+    backgroundImage: `url(${bodyBg.src})`,
   },
   header: {
     backgroundColor: '#FFFFFF',
@@ -114,10 +119,11 @@ const styles: { [key: string]: React.CSSProperties } = {
   headerContent: {
     maxWidth: '96rem',
     margin: '0 auto',
-    padding: '1.5rem 2rem',
+    padding: '3.5rem 2rem',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
+    backgroundImage: `url(${navBg.src})`,
   },
   logo: {
     fontSize: '1.25rem',

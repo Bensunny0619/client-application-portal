@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import Link from "next/link";
 
+
 interface Application {
   id: string;
   clientname: string;
@@ -44,7 +45,7 @@ export default function ApplicationListPage() {
 
   return (
     <div style={{ maxWidth: "800px", margin: "40px auto", padding: "30px" }}>
-      <h1 style={{ fontSize: "24px", marginBottom: "20px", color: "#6b21a8" }}>
+      <h1 style={{ fontSize: "28px", marginBottom: "20px", color: "#6b21a8", }}>
         All Applications
       </h1>
 
@@ -54,7 +55,7 @@ export default function ApplicationListPage() {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         style={{
-          width: "100%",
+          width: "97%",
           padding: "10px",
           marginBottom: "20px",
           borderRadius: "6px",
@@ -73,10 +74,11 @@ export default function ApplicationListPage() {
             <li
               key={app.id}
               style={{
-                border: "1px solid #ccc",
+                border: "#ccc",
                 borderRadius: "8px",
                 padding: "15px",
                 marginBottom: "10px",
+                boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)"
               }}
             >
               <strong>{app.clientname}</strong> – {app.formtype} –{" "}

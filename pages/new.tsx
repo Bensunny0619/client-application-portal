@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { supabase } from "@/lib/supabase";
 import { getTargetInfo } from "../utils/formUtils";
 
+
 interface ApplicationPayload {
   clientname: string;
   submitteddate: string;
@@ -82,12 +83,12 @@ export default function NewApplicationPage() {
       }
 
       alert(isDraft ? "📝 Draft saved!" : "✅ Application submitted successfully!");
-      router.push("/client-applications");
+      router.push("/home");
     }
   };
 
   return (
-    <div style={{ maxWidth: "600px", margin: "40px auto", padding: "30px", border: "1px solid #ccc", borderRadius: "10px", background: "#fff", boxShadow: "0 4px 8px rgba(0,0,0,0.05)" }}>
+    <div style={{ maxWidth: "500px", margin: "40px auto", padding: "30px", border: "#ccc", borderRadius: "10px", background: "#fff", boxShadow: "0 4px 8px rgba(0,0,0,0.2)" }}>
       <h1 style={{ fontSize: "24px", marginBottom: "20px", color: "#4B0082" }}>
         New {formType} Application
       </h1>

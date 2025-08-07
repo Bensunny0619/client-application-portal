@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
 import { useRouter } from 'next/navigation';
+import bodyBg from '@/assets/med1.jpg'; 
+import navBg from '@/assets/head.png'; 
 
 export default function SignupPage() {
   const [email, setEmail] = useState('');
@@ -48,7 +50,7 @@ export default function SignupPage() {
       {/* Header */}
       <header style={styles.header}>
         <div style={styles.headerContent}>
-          <h1 className="header-title" style={styles.logo}>BATCHEWANA HEALTH CARE</h1>
+          {/* <h1 className="header-title" style={styles.logo}>BATCHEWANA HEALTH CARE</h1> */}
           {/* <Link href="/home" style={styles.homeLink}>← Home</Link> */}
         </div>
       </header>
@@ -75,13 +77,13 @@ export default function SignupPage() {
             required
           />
           <button type="submit" style={styles.button}>Sign Up</button>
-        </form>
+        </form> 
       </main>
 
       {/* Footer */}
-      <footer style={styles.footer}>
+      {/* <footer style={styles.footer}>
         &copy; {new Date().getFullYear()} Batchewana First Nation Health Care. All rights reserved.
-      </footer>
+      </footer> */}
     </div>
   );
 }
@@ -95,6 +97,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     backgroundColor: '#F9FAFB',
     color: '#1F2937',
     fontFamily: 'sans-serif',
+    
   },
   header: {
     backgroundColor: '#FFFFFF',
@@ -106,15 +109,11 @@ const styles: { [key: string]: React.CSSProperties } = {
   headerContent: {
     maxWidth: '96rem',
     margin: '0 auto',
-    padding: '1.5rem 2rem',
+    padding: '3.5rem 2rem',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-  },
-  logo: {
-    fontSize: '1.25rem',
-    fontWeight: 700,
-    color: '#6B21A8', // Purple-800
+    backgroundImage: `url(${navBg.src})`,
   },
   homeLink: {
     fontWeight: 500,
@@ -129,7 +128,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     padding: '3rem 1rem',
   },
   form: {
-    width: '100%',
+    width: '30%',
     maxWidth: '28rem',
     backgroundColor: '#FFFFFF',
     border: '1px solid #E5E7EB',
@@ -148,7 +147,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     marginBottom: '0.5rem',
   },
   input: {
-    width: '100%',
+    width: '90%',
     padding: '0.75rem',
     border: '1px solid #D1D5DB',
     borderRadius: '0.375rem',
@@ -166,11 +165,11 @@ const styles: { [key: string]: React.CSSProperties } = {
     cursor: 'pointer',
     transition: 'background-color 0.3s ease',
   },
-  footer: {
-    backgroundColor: '#F3F4F6',
-    textAlign: 'center',
-    padding: '1rem 0',
-    fontSize: '0.875rem',
-    color: '#C4B5FD',
-  },
+  // footer: {
+  //   backgroundColor: '#F3F4F6',
+  //   textAlign: 'center',
+  //   padding: '1rem 0',
+  //   fontSize: '0.875rem',
+  //   color: '#C4B5FD',
+  // },
 };

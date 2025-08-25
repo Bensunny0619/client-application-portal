@@ -19,6 +19,258 @@ interface Application {
   chequecollecteddate?: string;
 }
 
+const styles = {
+  container: {
+    minHeight: '100vh',
+    backgroundColor: '#f9fafb',
+  },
+  header: {
+    backgroundColor: '#ffffff',
+    boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+    borderBottom: '1px solid #e5e7eb',
+  },
+  headerContent: {
+    maxWidth: '72rem',
+    margin: '0 auto',
+    padding: '1.5rem 1rem',
+  },
+  headerFlex: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  title: {
+    fontSize: '1.875rem',
+    fontWeight: '700',
+    color: '#581c87',
+    fontFamily: "'Playfair Display', serif",
+    margin: 0,
+  },
+  reportsButton: {
+    backgroundColor: '#9333ea',
+    color: '#ffffff',
+    padding: '0.5rem 1rem',
+    borderRadius: '0.375rem',
+    fontWeight: '500',
+    border: 'none',
+    cursor: 'pointer',
+    transition: 'background-color 0.2s',
+    textDecoration: 'none',
+    display: 'inline-block',
+  },
+  mainContent: {
+    maxWidth: '72rem',
+    margin: '0 auto',
+    padding: '1.5rem 1rem',
+  },
+  summaryGrid: {
+    display: 'flex',
+    gap: '1rem',
+    marginBottom: '1.5rem',
+    flexWrap: 'wrap' as const,
+  },
+  summaryCard: {
+    backgroundColor: '#ffffff',
+    padding: '1rem',
+    borderRadius: '0.5rem',
+    boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+    border: '1px solid #e5e7eb',
+    flex: '1',
+    minWidth: '200px',
+  },
+  summaryNumber: {
+    fontSize: '1.5rem',
+    fontWeight: '700',
+    color: '#111827',
+  },
+  summaryNumberGreen: {
+    fontSize: '1.5rem',
+    fontWeight: '700',
+    color: '#059669',
+  },
+  summaryNumberRed: {
+    fontSize: '1.5rem',
+    fontWeight: '700',
+    color: '#dc2626',
+  },
+  summaryNumberYellow: {
+    fontSize: '1.5rem',
+    fontWeight: '700',
+    color: '#d97706',
+  },
+  summaryLabel: {
+    fontSize: '0.875rem',
+    color: '#4b5563',
+  },
+  filtersCard: {
+    backgroundColor: '#ffffff',
+    padding: '1rem',
+    borderRadius: '0.5rem',
+    boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+    border: '1px solid #e5e7eb',
+    marginBottom: '1.5rem',
+  },
+  filtersGrid: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '1rem',
+  },
+  searchInput: {
+    width: '100%',
+    padding: '0.5rem 1rem',
+    border: '1px solid #d1d5db',
+    borderRadius: '0.375rem',
+    fontSize: '1rem',
+    outline: 'none',
+    color: '#374151',
+    backgroundColor: '#ffffff',
+  },
+  selectInput: {
+    width: '100%',
+    padding: '0.5rem 1rem',
+    border: '1px solid #d1d5db',
+    borderRadius: '0.375rem',
+    fontSize: '1rem',
+    outline: 'none',
+    backgroundColor: '#ffffff',
+    color: '#374151',
+  },
+  loadingContainer: {
+    textAlign: 'center' as const,
+    padding: '2rem 0',
+  },
+  loadingText: {
+    color: '#7c3aed',
+    fontSize: '1.25rem',
+  },
+  noResultsContainer: {
+    textAlign: 'center' as const,
+    padding: '2rem 0',
+  },
+  noResultsText: {
+    color: '#6b7280',
+  },
+  applicationsCard: {
+    backgroundColor: '#ffffff',
+    borderRadius: '0.5rem',
+    boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+    border: '1px solid #e5e7eb',
+    overflow: 'hidden',
+  },
+  applicationItem: {
+    padding: '1.5rem',
+    borderBottom: '1px solid #e5e7eb',
+    transition: 'background-color 0.2s',
+  },
+  applicationFlex: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  applicationContent: {
+    flex: 1,
+  },
+  applicationHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '1rem',
+    marginBottom: '0.5rem',
+  },
+  applicationName: {
+    fontSize: '1.125rem',
+    fontWeight: '600',
+    color: '#111827',
+    margin: 0,
+  },
+  formTypeBadge: {
+    fontSize: '0.875rem',
+    color: '#6b7280',
+    backgroundColor: '#f3f4f6',
+    padding: '0.25rem 0.5rem',
+    borderRadius: '0.25rem',
+  },
+  submittedDate: {
+    fontSize: '0.875rem',
+    color: '#4b5563',
+    marginBottom: '0.75rem',
+  },
+  statusBadgeContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '0.5rem',
+  },
+  statusBadge: {
+    padding: '0.25rem 0.75rem',
+    borderRadius: '9999px',
+    fontSize: '0.875rem',
+    fontWeight: '500',
+  },
+  progressBarContainer: {
+    width: '4rem',
+    backgroundColor: '#e5e7eb',
+    borderRadius: '9999px',
+    height: '0.5rem',
+  },
+  progressBar: {
+    height: '0.5rem',
+    borderRadius: '9999px',
+  },
+  progressText: {
+    fontSize: '0.75rem',
+    color: '#4b5563',
+  },
+  viewButton: {
+    backgroundColor: '#9333ea',
+    color: '#ffffff',
+    padding: '0.5rem 1rem',
+    borderRadius: '0.375rem',
+    fontWeight: '500',
+    border: 'none',
+    cursor: 'pointer',
+    transition: 'background-color 0.2s',
+    textDecoration: 'none',
+    display: 'inline-block',
+    marginLeft: '1rem',
+  },
+};
+
+// Media query styles for responsive design
+const mediaQueries = `
+  @media (min-width: 768px) {
+    .summary-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .filters-grid {
+      flex-direction: row;
+    }
+    .select-width {
+      width: 12rem;
+    }
+  }
+  
+  .reports-button:hover {
+    background-color: #7c3aed;
+  }
+  
+  .view-button:hover {
+    background-color: #7c3aed;
+  }
+  
+  .application-item:hover {
+    background-color: #f9fafb;
+  }
+  
+  .search-input:focus {
+    ring: 2px solid #9333ea;
+    border-color: transparent;
+  }
+  
+  .select-input:focus {
+    ring: 2px solid #9333ea;
+    border-color: transparent;
+  }
+`;
+
 export default function ApplicationListPage() {
   const [applications, setApplications] = useState<Application[]>([]);
   const [filteredApps, setFilteredApps] = useState<Application[]>([]);
@@ -63,10 +315,10 @@ export default function ApplicationListPage() {
   const StatusBadge = ({ application }: { application: Application }) => {
     const statusInfo = getApplicationStatus(application);
     return (
-      <div className="flex items-center gap-2">
+      <div style={styles.statusBadgeContainer}>
         <span
-          className="px-3 py-1 rounded-full text-sm font-medium"
           style={{
+            ...styles.statusBadge,
             backgroundColor: statusInfo.bgColor,
             color: statusInfo.textColor,
             border: `1px solid ${statusInfo.color}`,
@@ -74,117 +326,126 @@ export default function ApplicationListPage() {
         >
           {statusInfo.status.charAt(0).toUpperCase() + statusInfo.status.slice(1)}
         </span>
-        <div className="w-16 bg-gray-200 rounded-full h-2">
+        <div style={styles.progressBarContainer}>
           <div
-            className="h-2 rounded-full"
             style={{
+              ...styles.progressBar,
               width: `${statusInfo.completionPercentage}%`,
               backgroundColor: statusInfo.color,
             }}
           />
         </div>
-        <span className="text-xs text-gray-600">{statusInfo.completionPercentage}%</span>
+        <span style={styles.progressText}>{statusInfo.completionPercentage}%</span>
       </div>
     );
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white shadow-sm border-b">
-        <div className="max-w-6xl mx-auto px-4 py-6">
-          <div className="flex justify-between items-center">
-            <h1 className="text-3xl font-bold text-purple-900" style={{ fontFamily: "'Playfair Display', serif" }}>
-              All Applications
-            </h1>
-            <Link
-              href="/reports"
-              className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-md font-medium transition"
-            >
-              View Reports
-            </Link>
-          </div>
-        </div>
-      </div>
-
-      <div className="max-w-6xl mx-auto px-4 py-6">
-        {/* Summary Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-          <div className="bg-white p-4 rounded-lg shadow-sm border">
-            <div className="text-2xl font-bold text-gray-900">{summary.total}</div>
-            <div className="text-sm text-gray-600">Total Applications</div>
-          </div>
-          <div className="bg-white p-4 rounded-lg shadow-sm border">
-            <div className="text-2xl font-bold text-green-600">{summary.complete}</div>
-            <div className="text-sm text-gray-600">Complete ({summary.completePercentage}%)</div>
-          </div>
-          <div className="bg-white p-4 rounded-lg shadow-sm border">
-            <div className="text-2xl font-bold text-red-600">{summary.incomplete}</div>
-            <div className="text-sm text-gray-600">Incomplete ({summary.incompletePercentage}%)</div>
-          </div>
-          <div className="bg-white p-4 rounded-lg shadow-sm border">
-            <div className="text-2xl font-bold text-yellow-600">{summary.pending}</div>
-            <div className="text-sm text-gray-600">Pending ({summary.pendingPercentage}%)</div>
-          </div>
-        </div>
-
-        {/* Filters */}
-        <div className="bg-white p-4 rounded-lg shadow-sm border mb-6">
-          <div className="flex flex-col md:flex-row gap-4">
-            <div className="flex-1">
-              <input
-                type="text"
-                placeholder="Search by client name..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className="w-full px-4 text-purple-950 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-              />
-            </div>
-            <div className="md:w-48">
-              <select
-                value={statusFilter}
-                onChange={(e) => setStatusFilter(e.target.value)}
-                className="w-full px-4 text-purple-950 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-950 focus:border-transparent"
-              >
-                <option value="all">All Status</option>
-                <option value="complete">Complete</option>
-                <option value="incomplete">Incomplete</option>
-                <option value="pending">Pending</option>
-              </select>
+    <>
+      <style dangerouslySetInnerHTML={{ __html: mediaQueries }} />
+      <div style={styles.container}>
+        {/* Header */}
+        <div style={styles.header}>
+          <div style={styles.headerContent}>
+            <div style={styles.headerFlex}>
+              <h1 style={styles.title}>
+                All Applications
+              </h1>
+              <Link href="/reports">
+                <button style={styles.reportsButton} className="reports-button">
+                  View Reports
+                </button>
+              </Link>
             </div>
           </div>
         </div>
 
-        {/* Applications List */}
-        {loading ? (
-          <div className="text-center py-8">
-            <div className="text-purple-700 text-xl">Loading...</div>
+        <div style={styles.mainContent}>
+          {/* Summary Cards */}
+          <div style={{...styles.summaryGrid, display: 'flex', flexWrap: 'wrap'}} className="summary-grid">
+            <div style={styles.summaryCard}>
+              <div style={styles.summaryNumber}>{summary.total}</div>
+              <div style={styles.summaryLabel}>Total Applications</div>
+            </div>
+            <div style={styles.summaryCard}>
+              <div style={styles.summaryNumberGreen}>{summary.complete}</div>
+              <div style={styles.summaryLabel}>Complete ({summary.completePercentage}%)</div>
+            </div>
+            <div style={styles.summaryCard}>
+              <div style={styles.summaryNumberRed}>{summary.incomplete}</div>
+              <div style={styles.summaryLabel}>Incomplete ({summary.incompletePercentage}%)</div>
+            </div>
+            <div style={styles.summaryCard}>
+              <div style={styles.summaryNumberYellow}>{summary.pending}</div>
+              <div style={styles.summaryLabel}>Pending ({summary.pendingPercentage}%)</div>
+            </div>
           </div>
-        ) : filteredApps.length === 0 ? (
-          <div className="text-center py-8">
-            <div className="text-gray-500">No matching applications found.</div>
+
+          {/* Filters */}
+          <div style={styles.filtersCard}>
+            <div style={{...styles.filtersGrid, flexDirection: 'column'}} className="filters-grid">
+              <div style={{ flex: 1 }}>
+                <input
+                  type="text"
+                  placeholder="Search by client name..."
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  style={styles.searchInput}
+                  className="search-input"
+                />
+              </div>
+              <div className="select-width">
+                <select
+                  value={statusFilter}
+                  onChange={(e) => setStatusFilter(e.target.value)}
+                  style={styles.selectInput}
+                  className="select-input"
+                >
+                  <option value="all">All Status</option>
+                  <option value="complete">Complete</option>
+                  <option value="incomplete">Incomplete</option>
+                  <option value="pending">Pending</option>
+                </select>
+              </div>
+            </div>
           </div>
-        ) : (
-          <div className="bg-white rounded-lg shadow-sm border overflow-hidden">
-            <div className="divide-y divide-gray-200">
-              {filteredApps.map((app) => (
-                <div key={app.id} className="p-6 hover:bg-gray-50 transition">
-                  <div className="flex items-center justify-between">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-4 mb-2">
-                        <h3 className="text-lg font-semibold text-gray-900">{app.clientname}</h3>
-                        <span className="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded">
+
+          {/* Applications List */}
+          {loading ? (
+            <div style={styles.loadingContainer}>
+              <div style={styles.loadingText}>Loading...</div>
+            </div>
+          ) : filteredApps.length === 0 ? (
+            <div style={styles.noResultsContainer}>
+              <div style={styles.noResultsText}>No matching applications found.</div>
+            </div>
+          ) : (
+            <div style={styles.applicationsCard}>
+              {filteredApps.map((app, index) => (
+                <div 
+                  key={app.id} 
+                  style={{
+                    ...styles.applicationItem,
+                    borderBottom: index === filteredApps.length - 1 ? 'none' : '1px solid #e5e7eb'
+                  }}
+                  className="application-item"
+                >
+                  <div style={styles.applicationFlex}>
+                    <div style={styles.applicationContent}>
+                      <div style={styles.applicationHeader}>
+                        <h3 style={styles.applicationName}>{app.clientname}</h3>
+                        <span style={styles.formTypeBadge}>
                           {app.formtype}
                         </span>
                       </div>
-                      <div className="text-sm text-gray-600 mb-3">
+                      <div style={styles.submittedDate}>
                         Submitted: {app.submitteddate || "N/A"}
                       </div>
                       <StatusBadge application={app} />
                     </div>
-                    <div className="ml-4">
+                    <div>
                       <Link href={`/client-applications/${app.id}`}>
-                        <button className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-md font-medium transition">
+                        <button style={styles.viewButton} className="view-button">
                           View / Edit
                         </button>
                       </Link>
@@ -193,9 +454,9 @@ export default function ApplicationListPage() {
                 </div>
               ))}
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 }

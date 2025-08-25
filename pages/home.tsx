@@ -35,7 +35,7 @@ export default function HomePage() {
     );
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50 text-gray-800">
+    <div className="min-h-screen flex flex-col bg-gray-50 text-black">
       {/* Navigation */}
       <header
         className="bg-white shadow sticky top-0 z-10"
@@ -51,9 +51,15 @@ export default function HomePage() {
           <nav className="space-x-0 md:space-x-4 flex flex-col sm:flex-row items-center gap-2">
             <Link
               href="/client-applications"
-              className="bg-purple-900 hover:bg-purple-800 text-white px-4 py-2 rounded-md text-sm font-semibold shadow-sm transition duration-200"
+              className="bg-purple-800 hover:bg-purple-900 text-white px-4 py-2 rounded-md text-sm font-semibold shadow-sm transition duration-200"
             >
               Client Applications
+            </Link>
+            <Link
+              href="/reports"
+              className="bg-purple-800 hover:bg-purple-900 text-white px-4 py-2 rounded-md text-sm font-semibold shadow-sm transition duration-200"
+            >
+              Reports & Analytics
             </Link>
             <LogoutButton />
           </nav>

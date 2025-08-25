@@ -65,7 +65,7 @@ export default function EditApplicationPage() {
     e.preventDefault();
     if (!application) return;
 
-    const { id: _ignoreId, ...updatePayload } = application;
+    const { id, ...updatePayload } = application;
 
     const { error } = await supabase
       .from("applications")

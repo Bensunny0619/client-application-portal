@@ -58,6 +58,22 @@ const styles = {
     textDecoration: 'none',
     display: 'inline-block',
   },
+  homeButton: {
+    backgroundColor: '#2563eb',
+    color: '#ffffff',
+    padding: '0.5rem 1rem',
+    borderRadius: '0.375rem',
+    fontWeight: '500',
+    border: 'none',
+    cursor: 'pointer',
+    transition: 'background-color 0.2s',
+    textDecoration: 'none',
+    display: 'inline-block',
+  },
+  navButtonContainer: {
+    display: 'flex',
+    gap: '1rem',
+  },
   mainContent: {
     maxWidth: '72rem',
     margin: '0 auto',
@@ -351,11 +367,18 @@ export default function ApplicationListPage() {
               <h1 style={styles.title}>
                 All Applications
               </h1>
-              <Link href="/reports">
-                <button style={styles.reportsButton} className="reports-button">
-                  View Reports
-                </button>
-              </Link>
+              <div style={styles.navButtonContainer}>
+                <Link href="/reports">
+                  <button style={styles.reportsButton} className="reports-button">
+                    View Reports
+                  </button>
+                </Link>
+                <Link href="/home">
+                  <button style={styles.homeButton} className="home-button">
+                    Home
+                  </button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>

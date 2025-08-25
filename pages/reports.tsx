@@ -65,6 +65,22 @@ const styles = {
     textDecoration: 'none',
     display: 'inline-block',
   },
+  homeButton: {
+    backgroundColor: '#2563eb',
+    color: '#ffffff',
+    padding: '0.5rem 1rem',
+    borderRadius: '0.375rem',
+    fontWeight: '500',
+    border: 'none',
+    cursor: 'pointer',
+    transition: 'background-color 0.2s',
+    textDecoration: 'none',
+    display: 'inline-block',
+  },
+  navButtonContainer: {
+    display: 'flex',
+    gap: '1rem',
+  },
   mainContent: {
     maxWidth: '72rem',
     margin: '0 auto',
@@ -108,19 +124,24 @@ const styles = {
     display: 'flex',
     gap: '1rem',
     flexWrap: 'wrap' as const,
-    width: '100%',
+    width: '90%',
+    alignItems: 'flex-end' as const,
+    marginBottom: '1rem',
   },
   filtersRow2: {
     display: 'flex',
     gap: '1rem',
     flexWrap: 'wrap' as const,
-    width: '100%',
+    width: '90%',
+    alignItems: 'flex-start' as const,
   },
   inputGroup: {
     display: 'flex',
     flexDirection: 'column' as const,
-    flex: '1',
-    minWidth: '200px',
+    flex: '1 1 100px',
+    minWidth: '250px',
+    maxWidth: '40%',
+    marginBottom: '1rem',
   },
   label: {
     fontSize: '0.875rem',
@@ -129,7 +150,7 @@ const styles = {
     marginBottom: '0.25rem',
   },
   input: {
-    width: '100%',
+    width: '80%',
     padding: '0.5rem 0.75rem',
     border: '1px solid #d1d5db',
     borderRadius: '0.375rem',
@@ -137,6 +158,8 @@ const styles = {
     outline: 'none',
     backgroundColor: '#ffffff',
     color: '#111827',
+    boxSizing: 'border-box' as const,
+    minHeight: '2.5rem',
   },
   summaryGrid: {
     display: 'flex',
@@ -254,18 +277,18 @@ const styles = {
   },
   exportButtonsContainer: {
     display: 'flex',
-    flexDirection: 'column' as const,
+    flexDirection: 'row' as const,
     gap: '0.5rem',
   },
   exportButton: {
-    width: '100%',
-    padding: '0.5rem 1rem',
+    width: '80%',
+    padding: '0.6rem 0.70rem',
     borderRadius: '0.375rem',
     fontWeight: '500',
     border: 'none',
     cursor: 'pointer',
     transition: 'background-color 0.2s',
-    fontSize: '0.875rem',
+    fontSize: '0.85rem',
   },
   csvButton: {
     backgroundColor: '#059669',
@@ -283,26 +306,39 @@ const styles = {
   recordCount: {
     fontSize: '0.75rem',
     color: '#6b7280',
+    fontWeight: '700',
     textAlign: 'center' as const,
   },
 };
 
 const mediaQueries = `
+  @media (max-width: 767px) {
+    .filters-row {
+      flex-direction: column !important;
+    }
+    .input-group {
+      min-width: 100% !important;
+      margin-bottom: 1rem !important;
+    }
+  }
+
   @media (min-width: 768px) {
     .summary-grid {
       grid-template-columns: repeat(4, 1fr);
     }
-    .filters-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
     .charts-grid {
       grid-template-columns: repeat(2, 1fr);
     }
+    .input-group {
+      flex: 1 1 300px !important;
+      min-width: 250px !important;
+    }
   }
-  
+
   @media (min-width: 1024px) {
-    .filters-grid {
-      grid-template-columns: repeat(3, 1fr);
+    .input-group {
+      flex: 1 1 320px !important;
+      min-width: 280px !important;
     }
   }
   
@@ -325,6 +361,27 @@ const mediaQueries = `
   .input:focus {
     ring: 2px solid #9333ea;
     border-color: transparent;
+  }
+
+  /* Additional production-safe styles */
+  .input-group {
+    box-sizing: border-box !important;
+    position: relative !important;
+  }
+
+  .input {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    position: relative !important;
+    z-index: 1 !important;
+  }
+
+  .filters-row {
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 1rem !important;
+    width: 100% !important;
   }
 `;
 
@@ -420,11 +477,18 @@ export default function ReportsPage() {
               <h1 style={styles.title}>
                 Reports & Analytics
               </h1>
-              <Link href="/client-applications">
+              <div style={styles.navButtonContainer}>
+                <Link href="/client-applications">
                 <button style={styles.backButton} className="back-button">
                   Back to Applications
                 </button>
               </Link>
+              <Link href="/home">
+                <button style={styles.homeButton} className="home-button">
+                  Home
+                </button>
+              </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -446,8 +510,8 @@ export default function ReportsPage() {
             
             <div style={styles.filtersContainer}>
               {/* Row 1: Start Date, End Date, Status */}
-              <div style={styles.filtersRow1}>
-                <div style={styles.inputGroup}>
+              <div style={styles.filtersRow1} className="filters-row">
+                <div style={styles.inputGroup} className="input-group">
                   <label style={styles.label}>Start Date</label>
                   <input
                     type="date"
@@ -457,8 +521,8 @@ export default function ReportsPage() {
                     className="input"
                   />
                 </div>
-                
-                <div style={styles.inputGroup}>
+
+                <div style={styles.inputGroup} className="input-group">
                   <label style={styles.label}>End Date</label>
                   <input
                     type="date"
@@ -468,8 +532,8 @@ export default function ReportsPage() {
                     className="input"
                   />
                 </div>
-                
-                <div style={styles.inputGroup}>
+
+                <div style={styles.inputGroup} className="input-group">
                   <label style={styles.label}>Status</label>
                   <select
                     value={statusFilter}
@@ -486,8 +550,8 @@ export default function ReportsPage() {
               </div>
 
               {/* Row 2: Form Type, Client Name, Export */}
-              <div style={styles.filtersRow2}>
-                <div style={styles.inputGroup}>
+              <div style={styles.filtersRow2} className="filters-row">
+                <div style={styles.inputGroup} className="input-group">
                   <label style={styles.label}>Form Type</label>
                   <select
                     value={formTypeFilter}
@@ -501,8 +565,8 @@ export default function ReportsPage() {
                     ))}
                   </select>
                 </div>
-                
-                <div style={styles.inputGroup}>
+
+                <div style={styles.inputGroup} className="input-group">
                   <label style={styles.label}>Client Name</label>
                   <input
                     type="text"
@@ -513,8 +577,8 @@ export default function ReportsPage() {
                     className="input"
                   />
                 </div>
-                
-                <div style={styles.inputGroup}>
+
+                <div style={styles.inputGroup} className="input-group">
                   <label style={styles.label}>Export Data</label>
                   <div style={styles.exportButtonsContainer}>
                     <button

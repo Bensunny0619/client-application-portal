@@ -362,27 +362,16 @@ const mediaQueries = `
 
   @media (max-width: 480px) {
     .header-content {
-      padding: 0.75rem !important;
+      padding: 0.75rem 0.5rem !important;
     }
 
     .main-content {
-      padding: 0.75rem !important;
+      padding: 0.75rem 0.5rem !important;
     }
 
     .title {
       font-size: 1.25rem !important;
-    }
-
-    .summary-number {
-      font-size: 1.25rem !important;
-    }
-
-    .chart-title {
-      font-size: 1rem !important;
-    }
-
-    .filters-title {
-      font-size: 1rem !important;
+      text-align: center !important;
     }
 
     .nav-button-container {
@@ -396,6 +385,56 @@ const mediaQueries = `
       padding: 0.75rem !important;
       font-size: 0.875rem !important;
       text-align: center !important;
+    }
+
+    .summary-grid {
+      flex-direction: column !important;
+      gap: 0.75rem !important;
+    }
+
+    .summary-card {
+      width: 95% !important;
+      min-width: 95% !important;
+      padding: 0.75rem !important;
+      text-align: center !important;
+    }
+
+    .summary-number {
+      font-size: 1.25rem !important;
+    }
+
+    .charts-grid {
+      flex-direction: column !important;
+      gap: 1rem !important;
+    }
+
+    .chart-card {
+      width: 92% !important;
+      min-width: 92% !important;
+      padding: 1rem !important;
+    }
+
+    .chart-title {
+      font-size: 1rem !important;
+      text-align: center !important;
+    }
+
+    .filters-title {
+      font-size: 1rem !important;
+      text-align: center !important;
+    }
+
+    .filters-card {
+      padding: 1rem !important;
+    }
+
+    .input-group {
+      margin-bottom: 1rem !important;
+    }
+
+    .export-button {
+      padding: 0.75rem !important;
+      font-size: 0.875rem !important;
     }
   }
 
@@ -411,6 +450,7 @@ const mediaQueries = `
     .title {
       font-size: 1.125rem !important;
       line-height: 1.2 !important;
+      text-align: center !important;
     }
 
     .nav-button-container {
@@ -425,26 +465,89 @@ const mediaQueries = `
       font-size: 0.75rem !important;
       text-align: center !important;
       min-height: 2.5rem !important;
-    }  
+    }
 
     .summary-card {
       padding: 0.75rem !important;
+      width: 90% !important;
       min-width: 90% !important;
+      text-align: center !important;
     }
 
     .summary-number {
       font-size: 1.125rem !important;
     }
 
+    .summary-label {
+      font-size: 0.75rem !important;
+    }
+
     .filters-card {
       padding: 0.75rem !important;
     }
 
+    .filters-title {
+      font-size: 1rem !important;
+    }
+
+    .input-group {
+      margin-bottom: 0.75rem !important;
+    }
+
+    .input {
+      padding: 0.5rem !important;
+      font-size: 0.875rem !important;
+    }
+
     .chart-card {
       padding: 1rem !important;
-      min-width: 90% !important;
-      // max-width: 90% !important;
+      width: 100% !important;
+      min-width: 100% !important;
+      margin-bottom: 1rem !important;
     }
+
+    .chart-title {
+      font-size: 1rem !important;
+      text-align: center !important;
+    }
+
+    .chart-item {
+      font-size: 0.875rem !important;
+    }
+
+    .export-button {
+      padding: 0.5rem !important;
+      font-size: 0.75rem !important;
+    }
+
+    .charts-grid {
+      flex-direction: column !important;
+      gap: 1rem !important;
+      width: 100% !important;
+    }
+
+    .chart-card {
+      padding: 1rem !important;
+      width: 100% !important;
+      min-width: 100% !important;
+      margin-bottom: 1rem !important;
+      box-sizing: border-box !important;
+    }
+
+    .chart-title {
+      font-size: 1rem !important;
+      text-align: center !important;
+    }
+
+    .chart-item {
+      font-size: 0.875rem !important;
+    }
+
+    .export-button {
+      padding: 0.5rem !important;
+      font-size: 0.75rem !important;
+    }
+  }
   }
 
   @media (min-width: 768px) {

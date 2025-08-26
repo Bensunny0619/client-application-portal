@@ -286,32 +286,38 @@ const mediaQueries = `
     ring: 2px solid #9333ea;
     border-color: transparent;
   }
-  .search-input {
-    max-width: 90%;
-  }
-  
+
   .select-input:focus {
     ring: 2px solid #9333ea;
     border-color: transparent;
   }
-  .application-flex {
-    display: block;
-  }
-  
 
-  @media (max-width: 320px) {
-   .view-button {
-    font-size: 0.7rem;
-    margin: 0 auto;
-    max-width: 80%;
-    position: relative;
-    right: 45%;
-  
+  /* ✅ Fix for small screens: stack button at bottom */
+  @media (max-width: 360px) {
+    .application-flex {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+    .view-button {
+      margin-left: 0;
+      margin-top: 0.1rem;
+      width: 90%;
+      text-align: center;
+    }
+    .search-input {
+      max-width: 85%;
+    }
+   .reports-button{
+      font-size: 0.75rem;      
+   }
+  }
+  @media (min-width: 360px) {
+     .search-input {
+   max-width: 90%;
   }
   }
 `;
-
-
 
 export default function ApplicationListPage() {
   const [applications, setApplications] = useState<Application[]>([]);
@@ -391,25 +397,20 @@ export default function ApplicationListPage() {
           <div style={styles.headerContent}>
             <div style={styles.headerFlex}>
               <h1 style={styles.title}>
-                All Applications
+                Applications
               </h1>
               <div style={styles.navButtonContainer}>
                 <Link href="/reports">
                   <button style={styles.reportsButton} className="reports-button">
-                    View Reports
+                    Reports
                   </button>
                 </Link>
-                {/* <Link href="/home">
-                  <button style={styles.homeButton} className="home-button">
-                    Home
-                  </button>
-                </Link> */}
               </div>
             </div>
           </div>
         </div>
 
-        <div style={styles.mainContent}>
+        <div style={styles.mainContent} className="main-content">
           {/* Summary Cards */}
           <div style={{...styles.summaryGrid, display: 'flex', flexWrap: 'wrap'}} className="summary-grid">
             <div style={styles.summaryCard} className="summary-card">
@@ -479,7 +480,7 @@ export default function ApplicationListPage() {
                   }}
                   className="application-item"
                 >
-                  <div style={styles.applicationFlex}>
+                  <div style={styles.applicationFlex} className="application-flex">
                     <div style={styles.applicationContent}>
                       <div style={styles.applicationHeader}>
                         <h3 style={styles.applicationName}>{app.clientname}</h3>

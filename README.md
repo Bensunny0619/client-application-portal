@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Client Application Portal
+A modern web application for managing client application processes, built with Next.js, Supabase, React, and TypeScript. This project is part of my developer portfolio, demonstrating my skills in building full-stack web apps with clean, responsive UIs and robust backend integration.
 
-## Getting Started
+🚀 Overview
+The Client Application Portal allows organizations to track client forms, monitor application progress, and update statuses in real time. It features a clean dashboard, CRUD operations, and integration with Supabase for database and authentication.
 
-First, run the development server:
+<!-- replace with actual screenshot or gif -->
 
-```bash
+🔗 Live Demo: https://client-application.netlify.app/
+
+
+
+# 🛠 Tech Stack
+Frontend: Next.js, React, TypeScript, CSS
+
+Backend: Supabase (PostgreSQL, Auth, Realtime)
+
+Tools & Libraries: Git, Node.js
+
+Deployment: Netlify
+
+
+
+## ✨ Key Features
+🔐 User authentication and role-based access
+
+📄 Create, edit, and update client applications (CRUD)
+
+📊 Dashboard with summaries and progress indicators
+
+⏱ Real-time updates via Supabase
+
+📱 Fully responsive design
+
+
+
+### ⚙️ Installation/Getting Started
+
+# Clone the repository
+git clone https://github.com/ensunny0619/client-application-portal.git
+cd client-application-portal
+
+# Install dependencies
+npm install
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
 ```
+
+App will be available at http://localhost:3000.
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### 🖥 Usage
+Sign up or log in to access the portal.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Create new applications via the New Application form.
 
-## Deploy on Vercel
+Track application progress on the dashboard.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Update statuses (e.g., Pending → Complete) with real-time feedback.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+
+##### 🧩 Challenges & Solutions
+Challenge: Managing application state and filtering by status.
+
+Solution: Implemented reusable utility functions (applicationStatus.ts) to compute completion percentages and summaries.
+
+Challenge: Handling conditional form inputs and optional fields.
+
+Solution: Used TypeScript interfaces with optional properties and dynamic form rendering.
+
+
+
+######  Contributing
+Contributions, issues, and feature requests are welcome!
+Feel free to fork the repo and submit a pull request.
+

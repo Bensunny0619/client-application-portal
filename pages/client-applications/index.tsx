@@ -73,11 +73,13 @@ const styles = {
   navButtonContainer: {
     display: 'flex',
     gap: '1rem',
+    flexWrap: 'wrap' as const,
+    minWidth: '0',
   },
   mainContent: {
     maxWidth: '72rem',
     margin: '0 auto',
-    padding: '1.5rem 1rem',
+    padding: '1rem',
   },
   summaryGrid: {
     display: 'flex',
@@ -271,7 +273,11 @@ const mediaQueries = `
   .view-button:hover {
     background-color: #7c3aed;
   }
-  
+  .view-button {
+    padding: 0.2rem 0.5rem;
+    font-size: 0.75rem;
+  }
+
   .application-item:hover {
     background-color: #f9fafb;
   }
@@ -280,12 +286,20 @@ const mediaQueries = `
     ring: 2px solid #9333ea;
     border-color: transparent;
   }
+  .search-input {
+    max-width: 90%;
+  }
   
   .select-input:focus {
     ring: 2px solid #9333ea;
     border-color: transparent;
   }
+  .application-flex {
+    display: block;
+  }
 `;
+
+
 
 export default function ApplicationListPage() {
   const [applications, setApplications] = useState<Application[]>([]);
@@ -373,11 +387,11 @@ export default function ApplicationListPage() {
                     View Reports
                   </button>
                 </Link>
-                <Link href="/home">
+                {/* <Link href="/home">
                   <button style={styles.homeButton} className="home-button">
                     Home
                   </button>
-                </Link>
+                </Link> */}
               </div>
             </div>
           </div>
@@ -386,20 +400,20 @@ export default function ApplicationListPage() {
         <div style={styles.mainContent}>
           {/* Summary Cards */}
           <div style={{...styles.summaryGrid, display: 'flex', flexWrap: 'wrap'}} className="summary-grid">
-            <div style={styles.summaryCard}>
-              <div style={styles.summaryNumber}>{summary.total}</div>
+            <div style={styles.summaryCard} className="summary-card">
+              <div style={styles.summaryNumber} className="summary-number">{summary.total}</div>
               <div style={styles.summaryLabel}>Total Applications</div>
             </div>
-            <div style={styles.summaryCard}>
-              <div style={styles.summaryNumberGreen}>{summary.complete}</div>
+            <div style={styles.summaryCard} className="summary-card">
+              <div style={styles.summaryNumberGreen} className="summary-number">{summary.complete}</div>
               <div style={styles.summaryLabel}>Complete ({summary.completePercentage}%)</div>
             </div>
-            <div style={styles.summaryCard}>
-              <div style={styles.summaryNumberRed}>{summary.incomplete}</div>
+            <div style={styles.summaryCard} className="summary-card">
+              <div style={styles.summaryNumberRed} className="summary-number">{summary.incomplete}</div>
               <div style={styles.summaryLabel}>Incomplete ({summary.incompletePercentage}%)</div>
             </div>
-            <div style={styles.summaryCard}>
-              <div style={styles.summaryNumberYellow}>{summary.pending}</div>
+            <div style={styles.summaryCard} className="summary-card">
+              <div style={styles.summaryNumberYellow} className="summary-number">{summary.pending}</div>
               <div style={styles.summaryLabel}>Pending ({summary.pendingPercentage}%)</div>
             </div>
           </div>
@@ -469,7 +483,7 @@ export default function ApplicationListPage() {
                     <div>
                       <Link href={`/client-applications/${app.id}`}>
                         <button style={styles.viewButton} className="view-button">
-                          View / Edit
+                          Update
                         </button>
                       </Link>
                     </div>

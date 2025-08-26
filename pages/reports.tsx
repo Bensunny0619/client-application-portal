@@ -39,12 +39,14 @@ const styles = {
   headerContent: {
     maxWidth: '72rem',
     margin: '0 auto',
-    padding: '1.5rem 1rem',
+    padding: '1rem',
   },
   headerFlex: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
+    flexWrap: 'wrap' as const,
+    gap: '1rem',
   },
   title: {
     fontSize: '1.875rem',
@@ -80,11 +82,13 @@ const styles = {
   navButtonContainer: {
     display: 'flex',
     gap: '1rem',
+    flexWrap: 'wrap' as const,
+    minWidth: '0',
   },
   mainContent: {
     maxWidth: '72rem',
     margin: '0 auto',
-    padding: '1.5rem 1rem',
+    padding: '1rem',
   },
   filtersCard: {
     backgroundColor: '#ffffff',
@@ -312,13 +316,131 @@ const styles = {
 };
 
 const mediaQueries = `
+  /* Mobile First Responsive Design */
   @media (max-width: 767px) {
+    .header-flex {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: 1rem !important;
+    }
+
     .filters-row {
       flex-direction: column !important;
     }
+
     .input-group {
       min-width: 100% !important;
       margin-bottom: 1rem !important;
+    }
+
+    .summary-grid {
+      flex-direction: column !important;
+    }
+
+    .summary-card {
+      min-width: 100% !important;
+      margin-bottom: 1rem !important;
+    }
+
+    .charts-grid {
+      flex-direction: column !important;
+    }
+
+    .chart-card {
+      min-width: 100% !important;
+      margin-bottom: 1rem !important;
+    }
+
+    .filters-card {
+      padding: 1rem !important;
+    }
+
+    .title {
+      font-size: 1.5rem !important;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .header-content {
+      padding: 0.75rem !important;
+    }
+
+    .main-content {
+      padding: 0.75rem !important;
+    }
+
+    .title {
+      font-size: 1.25rem !important;
+    }
+
+    .summary-number {
+      font-size: 1.25rem !important;
+    }
+
+    .chart-title {
+      font-size: 1rem !important;
+    }
+
+    .filters-title {
+      font-size: 1rem !important;
+    }
+
+    .nav-button-container {
+      flex-direction: column !important;
+      width: 100% !important;
+      gap: 0.5rem !important;
+    }
+
+    .back-button, .home-button {
+      width: 100% !important;
+      padding: 0.75rem !important;
+      font-size: 0.875rem !important;
+      text-align: center !important;
+    }
+  }
+
+  @media (max-width: 320px) {
+    .header-content {
+      padding: 0.5rem !important;
+    }
+
+    .main-content {
+      padding: 0.5rem !important;
+    }
+
+    .title {
+      font-size: 1.125rem !important;
+      line-height: 1.2 !important;
+    }
+
+    .nav-button-container {
+      flex-direction: column !important;
+      width: 100% !important;
+      gap: 0.25rem !important;
+    }
+
+    .back-button, .home-button {
+      width: 100% !important;
+      padding: 0.5rem !important;
+      font-size: 0.75rem !important;
+      text-align: center !important;
+      min-height: 2.5rem !important;
+    }
+
+    .summary-card {
+      padding: 0.75rem !important;
+    }
+
+    .summary-number {
+      font-size: 1.125rem !important;
+    }
+
+    .filters-card {
+      padding: 0.75rem !important;
+    }
+
+    .chart-card {
+      padding: 1rem !important;
     }
   }
 
@@ -326,9 +448,11 @@ const mediaQueries = `
     .summary-grid {
       grid-template-columns: repeat(4, 1fr);
     }
+
     .charts-grid {
       grid-template-columns: repeat(2, 1fr);
     }
+
     .input-group {
       flex: 1 1 300px !important;
       min-width: 250px !important;
@@ -472,12 +596,12 @@ export default function ReportsPage() {
       <div style={styles.container}>
         {/* Header */}
         <div style={styles.header}>
-          <div style={styles.headerContent}>
-            <div style={styles.headerFlex}>
-              <h1 style={styles.title}>
+          <div style={styles.headerContent} className="header-content">
+            <div style={styles.headerFlex} className="header-flex">
+              <h1 style={styles.title} className="title">
                 Reports & Analytics
               </h1>
-              <div style={styles.navButtonContainer}>
+              <div style={styles.navButtonContainer} className="nav-button-container">
                 <Link href="/client-applications">
                 <button style={styles.backButton} className="back-button">
                   Back to Applications
@@ -493,11 +617,11 @@ export default function ReportsPage() {
           </div>
         </div>
 
-        <div style={styles.mainContent}>
+        <div style={styles.mainContent} className="main-content">
           {/* Filters */}
-          <div style={styles.filtersCard}>
+          <div style={styles.filtersCard} className="filters-card">
             <div style={styles.filtersHeader}>
-              <h2 style={styles.filtersTitle}>Filters</h2>
+              <h2 style={styles.filtersTitle} className="filters-title">Filters</h2>
               <button
                 type="button"
                 onClick={clearFilters}
@@ -622,28 +746,28 @@ export default function ReportsPage() {
             <>
               {/* Summary Cards */}
               <div style={styles.summaryGrid} className="summary-grid">
-                <div style={styles.summaryCard}>
-                  <div style={styles.summaryNumber}>{summary.total}</div>
+                <div style={styles.summaryCard} className="summary-card">
+                  <div style={styles.summaryNumber} className="summary-number">{summary.total}</div>
                   <div style={styles.summaryLabel}>Total Applications</div>
                 </div>
-                <div style={styles.summaryCard}>
-                  <div style={styles.summaryNumberGreen}>{summary.complete}</div>
+                <div style={styles.summaryCard} className="summary-card">
+                  <div style={styles.summaryNumberGreen} className="summary-number">{summary.complete}</div>
                   <div style={styles.summaryLabel}>Complete</div>
                 </div>
-                <div style={styles.summaryCard}>
-                  <div style={styles.summaryNumberRed}>{summary.incomplete}</div>
+                <div style={styles.summaryCard} className="summary-card">
+                  <div style={styles.summaryNumberRed} className="summary-number">{summary.incomplete}</div>
                   <div style={styles.summaryLabel}>Incomplete</div>
                 </div>
-                <div style={styles.summaryCard}>
-                  <div style={styles.summaryNumberYellow}>{summary.pending}</div>
+                <div style={styles.summaryCard} className="summary-card">
+                  <div style={styles.summaryNumberYellow} className="summary-number">{summary.pending}</div>
                   <div style={styles.summaryLabel}>Pending</div>
                 </div>
               </div>
 
               {/* Charts and Analytics */}
               <div style={styles.chartsGrid} className="charts-grid">
-                <div style={styles.chartCard}>
-                  <h3 style={styles.chartTitle}>Status Distribution</h3>
+                <div style={styles.chartCard} className="chart-card">
+                  <h3 style={styles.chartTitle} className="chart-title">Status Distribution</h3>
                   <div>
                     <div style={styles.chartItem}>
                       <div style={styles.chartLegend}>
@@ -707,8 +831,8 @@ export default function ReportsPage() {
                   </div>
                 </div>
                 
-                <div style={styles.chartCard}>
-                  <h3 style={styles.chartTitle}>Form Type Distribution</h3>
+                <div style={styles.chartCard} className="chart-card">
+                  <h3 style={styles.chartTitle} className="chart-title">Form Type Distribution</h3>
                   <div>
                     {formTypes.map((type, index) => {
                       const count = filteredApps.filter(app => app.formtype === type).length;

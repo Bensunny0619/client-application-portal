@@ -297,6 +297,18 @@ const mediaQueries = `
   .application-flex {
     display: block;
   }
+  
+
+  @media (max-width: 320px) {
+   .view-button {
+    font-size: 0.7rem;
+    margin: 0 auto;
+    max-width: 80%;
+    position: relative;
+    right: 45%;
+  
+  }
+  }
 `;
 
 

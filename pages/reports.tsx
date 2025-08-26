@@ -425,10 +425,11 @@ const mediaQueries = `
       font-size: 0.75rem !important;
       text-align: center !important;
       min-height: 2.5rem !important;
-    }
+    }  
 
     .summary-card {
       padding: 0.75rem !important;
+      min-width: 90% !important;
     }
 
     .summary-number {
@@ -441,6 +442,8 @@ const mediaQueries = `
 
     .chart-card {
       padding: 1rem !important;
+      min-width: 90% !important;
+      // max-width: 90% !important;
     }
   }
 
